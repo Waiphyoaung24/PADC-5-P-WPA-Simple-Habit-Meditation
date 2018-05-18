@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PADC-5-P-WPA-Simple-Habit-Meditate</string>
+    <string name="head_name_1">Start Here</string>
+    <string name="start">Start</string>
+    <string name="duration">5 mins</string>
+    <string name="head_name_2">Morning Meditations</string>
+    <string name="content_1">Morning Meditation</string>
+    <string name="head_name_3">A Healthy Mind</string>
+    <string name="content_2">PTSD</string>
+    <string name="duration_2">5-10-20 mins</string>
+    <string name="head_name_4">New on Simple Habit</string>
+    <string name="content_3">Mini Retreat For Moms</string>
+    <string name="category_tips">Unguided</string>
+    <string name="category_hint">Silence and nature sounds</string>
+    <string name="head_name_5">All Topic</string>
+
+</resources>
