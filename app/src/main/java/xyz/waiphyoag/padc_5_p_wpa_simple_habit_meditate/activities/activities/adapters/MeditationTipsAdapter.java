@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.FirstTipsViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemMeditationTipsViewHolder;
 
 /**

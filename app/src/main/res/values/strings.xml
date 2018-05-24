@@ -13,5 +13,9 @@
     <string name="category_tips">Unguided</string>
     <string name="category_hint">Silence and nature sounds</string>
     <string name="head_name_5">All Topic</string>
+    <string name="on_the_go">On The Go</string>
+    <string name="menu_title_1">Meditate</string>
+    <string name="menu_title_2">Me</string>
+    <string name="menu_title_3">More</string>
 
 </resources>

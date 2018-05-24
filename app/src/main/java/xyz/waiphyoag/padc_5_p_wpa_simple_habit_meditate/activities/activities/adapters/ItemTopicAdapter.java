@@ -8,22 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemHealthyTipsViewHolder;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemMeditationTipsViewHolder;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemTopicViewHolder;
 
 /**
- * Created by WaiPhyoAg on 5/17/18.
+ * Created by WaiPhyoAg on 5/18/18.
  */
 
-public class HealthyTipsAdapter extends RecyclerView.Adapter {
+public class ItemTopicAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context=parent.getContext();
         LayoutInflater layoutInflater=LayoutInflater.from(context);
-        View view=layoutInflater.inflate(R.layout.item_healthy_tips,parent,false);
-        ItemHealthyTipsViewHolder itemHealthyTipsViewHolder=new ItemHealthyTipsViewHolder(view);
-        return  itemHealthyTipsViewHolder;
+        View view=layoutInflater.inflate(R.layout.item_category_tips,parent,false);
+        ItemTopicViewHolder itemTopicViewHolder =new ItemTopicViewHolder(view);
+        return itemTopicViewHolder;
     }
 
     @Override
@@ -33,6 +32,6 @@ public class HealthyTipsAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 5;
     }
 }

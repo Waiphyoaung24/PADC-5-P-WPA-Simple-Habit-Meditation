@@ -7,8 +7,12 @@ import android.view.View;
  * Created by WaiPhyoAg on 5/18/18.
  */
 
-public class ItemCategoryTipsViewHolder extends RecyclerView.ViewHolder {
-    public ItemCategoryTipsViewHolder(View itemView) {
+public class ItemTopicViewHolder extends RecyclerView.ViewHolder {
+    public ItemTopicViewHolder(View itemView) {
         super(itemView);
+
+
+
+
     }
 }

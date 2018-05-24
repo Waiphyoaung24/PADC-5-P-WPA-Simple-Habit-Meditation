@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/margin_medium"
-    app:cardCornerRadius="@dimen/margin_card_medium">
+    app:cardCornerRadius="@dimen/margin_card_medium"
+    >
 
 
     <RelativeLayout

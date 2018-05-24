@@ -41,4 +41,5 @@
     <dimen name="text_width_content">120dp</dimen>
     <dimen name="content_height">160dp</dimen>
     <dimen name="content_width">180dp</dimen>
+    <dimen name="navigation_height">56dp</dimen>
 </resources>
