@@ -1,5 +1,6 @@
 package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,18 +12,23 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.vi
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.FirstTipsViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemMorningMeditationViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemNewTipsViewHolder;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemTopicViewHolder;
 
 /**
  * Created by WaiPhyoAg on 5/20/18.
  */
 
-public class SeriesAdapter extends RecyclerView.Adapter {
+public class SeriesAdapter extends BaseRecyclerAdapter {
 
     private static final int VT_MAIN_CONTENT = 0;
     private static final int VT_MEDITATION = 1;
     private static final int VT_HEALTHY = 2;
     private static final int VT_NEW = 3;
     private static final int VT_CATEGORY = 4;
+
+    public SeriesAdapter(Context context) {
+        super(context);
+    }
 
     @NonNull
     @Override

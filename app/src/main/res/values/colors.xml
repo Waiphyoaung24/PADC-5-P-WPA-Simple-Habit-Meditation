@@ -11,4 +11,5 @@
     <color name="white_full">#FFF</color>
     <color name="background_color">#263238</color>
     <color name="black">#000000</color>
+    <color name="navigation_background">#455a64</color>
 </resources>

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="@+id/item_meditate"
-    android:icon="@drawable/ic_play_circle_filled"
-    android:iconTint="@color/secondary_text"
-    android:title="@string/menu_title_1"/>
-    <item android:id="@+id/item_me"
+    <item
+        android:id="@+id/item_meditate"
+        android:icon="@drawable/ic_play_circle_filled"
+        android:iconTint="@color/white_full"
+        android:title="@string/menu_title_1" />
+    <item
+        android:id="@+id/item_me"
         android:icon="@drawable/ic_person"
-        android:iconTint="@color/secondary_text"
-        android:title="@string/menu_title_2"/>
-    <item android:id="@+id/item_more"
+        android:iconTint="@color/white_full"
+        android:title="@string/menu_title_2" />
+    <item
+        android:id="@+id/item_more"
         android:icon="@drawable/ic_more_horiz"
-        android:iconTint="@color/secondary_text"
-        android:title="@string/menu_title_3"/>
+        android:iconTint="@color/white_full"
+        android:title="@string/menu_title_3" />
 
 
 </menu>

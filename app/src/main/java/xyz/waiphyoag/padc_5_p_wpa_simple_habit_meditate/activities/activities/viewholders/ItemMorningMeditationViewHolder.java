@@ -8,12 +8,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters.MeditationTipsAdapter;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
 
 /**
  * Created by WaiPhyoAg on 5/24/18.
  */
 
-public class ItemMorningMeditationViewHolder extends RecyclerView.ViewHolder {
+public class ItemMorningMeditationViewHolder extends BaseViewHolder<CategoriesVO> {
     @BindView(R.id.rv_morning_meditation)
     RecyclerView rvMeditationTips;
     private MeditationTipsAdapter meditationTipsAdapter;
@@ -28,6 +29,16 @@ public class ItemMorningMeditationViewHolder extends RecyclerView.ViewHolder {
 
 
 
+
+    }
+
+    @Override
+    public void setData(CategoriesVO data) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

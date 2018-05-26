@@ -17,5 +17,14 @@
     <string name="menu_title_1">Meditate</string>
     <string name="menu_title_2">Me</string>
     <string name="menu_title_3">More</string>
+    <string name="tv_progress">Progress</string>
+    <string name="streak">0</string>
+    <string name="sessions">0</string>
+    <string name="minutes">2</string>
+    <string name="text_streak">Current Day Streak</string>
+    <string name="text_session">Total Sessions</string>
+    <string name="text_total_minutes">Total Minutes</string>
+    <string name="limited">Get Unlimited Access</string>
+    <string name="best_teacher">To The world\'s best teachers</string>
 
 </resources>

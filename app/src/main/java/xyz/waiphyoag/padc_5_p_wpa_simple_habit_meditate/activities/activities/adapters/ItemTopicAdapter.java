@@ -8,30 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.TopicsVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.BaseViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemTopicViewHolder;
 
 /**
  * Created by WaiPhyoAg on 5/18/18.
  */
 
-public class ItemTopicAdapter extends RecyclerView.Adapter {
+public class ItemTopicAdapter extends BaseRecyclerAdapter<BaseViewHolder, TopicsVO> {
+    public ItemTopicAdapter(Context context) {
+        super(context);
+    }
+
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context=parent.getContext();
-        LayoutInflater layoutInflater=LayoutInflater.from(context);
-        View view=layoutInflater.inflate(R.layout.item_category_tips,parent,false);
-        ItemTopicViewHolder itemTopicViewHolder =new ItemTopicViewHolder(view);
-        return itemTopicViewHolder;
+    public ItemTopicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemTopicViewHolder = mLayoutInflator.inflate(R.layout.item_category_tips, parent, false);
+        return new ItemTopicViewHolder(itemTopicViewHolder);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 5;
-    }
 }
+
+
+
