@@ -15,6 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.POST;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events.RestApiEvent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.SimpleHabitApi;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.responses.GetCategoryResponse;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.responses.GetCurrentProgramResponse;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.responses.GetTopicResponse;
 
 /**
@@ -52,34 +54,92 @@ public class RetrofitDataAgent implements SimpleHabitDataAgent {
 
 
     @Override
-    public void loadData(int pageNo, String accessToken) {
+    public void loadTopic(int pageNo, String accessToken) {
 
-        Call<GetTopicResponse> loadTopicData = simpleHabitApi.loadData(accessToken, pageNo);
-            loadTopicData.enqueue(new Callback<GetTopicResponse>() {
-                @Override
-                public void onResponse(Call<GetTopicResponse> call, Response<GetTopicResponse> response) {
-                    GetTopicResponse getTopicResponse = response.body();
-                    if (getTopicResponse != null
-                            && getTopicResponse.getTopicsVO().size() > 0) {
-                        RestApiEvent.LoadedTopicList loadedTopicList = new RestApiEvent.LoadedTopicList(getTopicResponse.getPageNo(), getTopicResponse.getTopicsVO());
-                        EventBus.getDefault().post(loadedTopicList);
-                    } else {
-                        RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent("No data could be loaded for now, Please try again");
-                        EventBus.getDefault().post(errorEvent);
-                    }
-
-                }
-
-
-                @Override
-                public void onFailure(Call<GetTopicResponse> call, Throwable t) {
-                    RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent(t.getMessage());
+        Call<GetTopicResponse> loadTopicData = simpleHabitApi.loadTopic(accessToken, pageNo);
+        loadTopicData.enqueue(new Callback<GetTopicResponse>() {
+            @Override
+            public void onResponse(Call<GetTopicResponse> call, Response<GetTopicResponse> response) {
+                GetTopicResponse getTopicResponse = response.body();
+                if (getTopicResponse != null
+                        && getTopicResponse.getTopicsVO().size() > 0) {
+                    RestApiEvent.LoadedTopicList loadedTopicList = new RestApiEvent.LoadedTopicList(getTopicResponse.getTopicsVO());
+                    EventBus.getDefault().post(loadedTopicList);
+                } else {
+                    RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent("No data could be loaded for now, Please try again");
                     EventBus.getDefault().post(errorEvent);
                 }
-            });
 
-        }
+            }
+
+
+            @Override
+            public void onFailure(Call<GetTopicResponse> call, Throwable t) {
+                RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent(t.getMessage());
+                EventBus.getDefault().post(errorEvent);
+            }
+        });
+
     }
+
+    @Override
+    public void loadCurrentProgram(int pageNo, String accessToken) {
+
+        Call<GetCurrentProgramResponse> loadProgram = simpleHabitApi.loadCurrentProgram(accessToken, pageNo);
+        loadProgram.enqueue(new Callback<GetCurrentProgramResponse>() {
+            @Override
+            public void onResponse(Call<GetCurrentProgramResponse> call, Response<GetCurrentProgramResponse> response) {
+                GetCurrentProgramResponse getCurrentProgramResponse = response.body();
+                if (getCurrentProgramResponse != null) {
+                    RestApiEvent.LoadedCurrentProgramList loadedCurrentProgramList = new RestApiEvent.LoadedCurrentProgramList(getCurrentProgramResponse.getCurrentProgram());
+                    EventBus.getDefault().post(loadedCurrentProgramList);
+                } else {
+                    RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent("No data could be loaded for now, Please try again");
+                    EventBus.getDefault().post(errorEvent);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetCurrentProgramResponse> call, Throwable t) {
+                RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent("No data could be loaded for now, Please try again");
+                EventBus.getDefault().post(errorEvent);
+
+            }
+        });
+
+    }
+
+    @Override
+    public void loadCategory(int pageNo, String accessToken) {
+
+        final Call<GetCategoryResponse> loadCategories = simpleHabitApi.loadCategories(accessToken, pageNo);
+        loadCategories.enqueue(new Callback<GetCategoryResponse>() {
+            @Override
+            public void onResponse(Call<GetCategoryResponse> call, Response<GetCategoryResponse> response) {
+                GetCategoryResponse getCategoryResponse = response.body();
+                if (getCategoryResponse != null
+                        && getCategoryResponse.getCategoriesPrograms().size() > 0) {
+                    RestApiEvent.LoadedCategoriesList loadedCategoriesList = new RestApiEvent.LoadedCategoriesList(getCategoryResponse.getCategoriesPrograms());
+                    EventBus.getDefault().post(loadedCategoriesList);
+                }
+                else
+                {
+                    RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent("No data could be loaded for now, Please try again");
+                    EventBus.getDefault().post(errorEvent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetCategoryResponse> call, Throwable t) {
+                RestApiEvent.ErrorInvokingAPIEvent errorEvent = new RestApiEvent.ErrorInvokingAPIEvent("No data could be loaded for now, Please try again");
+                EventBus.getDefault().post(errorEvent);
+
+            }
+        });
+
+    }
+}
 
 
 

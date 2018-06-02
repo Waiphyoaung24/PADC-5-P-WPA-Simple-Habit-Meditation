@@ -43,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tv_tip_name"
+        android:id="@+id/tips_length"
         android:layout_below="@id/tv_tip_name"
         android:layout_marginBottom="@dimen/margin_medium_2"
         android:text="@string/duration"

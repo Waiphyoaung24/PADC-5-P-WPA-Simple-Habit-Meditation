@@ -2,11 +2,13 @@ package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.d
 
 import com.google.gson.annotations.SerializedName;
 
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
+
 /**
  * Created by WaiPhyoAg on 5/25/18.
  */
 
-public class SessionsVO {
+public class SessionsVO   {
     @SerializedName("session-id")
     private String sessionID;
 

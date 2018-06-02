@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events.RestApiEvent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.TopicsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.DataAgents.RetrofitDataAgent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.DataAgents.SimpleHabitDataAgent;
@@ -18,35 +21,56 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.ne
 
 public class UserModel {
     private static UserModel objInstance;
-    private List<TopicsVO> mTopic;
-    private int mmPageIndex=1;
+    private List<SharedParent> collectionList;
+    private List<CategoriesVO>categoriesVOS;
+
+    public List<SharedParent> getCollectionList() {
+        return collectionList;
+    }
+
     private SimpleHabitDataAgent simpleHabitDataAgent;
 
-    private UserModel()
-    {
+    private UserModel() {
         EventBus.getDefault().register(this);
-        mTopic=new ArrayList<>();
-        simpleHabitDataAgent=RetrofitDataAgent.getInstance();
+
+        collectionList = new ArrayList<>();
     }
-    public static UserModel getInstance()
-    {
-        if(objInstance==null)
-        {
-            objInstance=new UserModel();
+
+    public static UserModel getInstance() {
+        if (objInstance == null) {
+            objInstance = new UserModel();
         }
         return objInstance;
     }
-    public void StartloadingSimpleHabit()
-    {
-//        RetrofitDataAgent.getInstance().loadData(1,"b002c7e1a528b7cb460933fc2875e916");
-        simpleHabitDataAgent.loadData(1,"b002c7e1a528b7cb460933fc2875e916");
+
+    public void StartloadingSimpleHabit() {
+        RetrofitDataAgent.getInstance().loadCurrentProgram(1, "b002c7e1a528b7cb460933fc2875e916");
+
     }
+
     @Subscribe
-    public void onTopicDataLoaded(RestApiEvent.LoadedTopicList event)
-    {
-        mTopic.addAll(event.getLoadTopicsList());
-
+    public void onCurrentProgramDataLoaded(RestApiEvent.LoadedCurrentProgramList event) {
+        collectionList.add(event.getCurrentProgramsVOList());
+        RetrofitDataAgent.getInstance().loadCategory(1, "b002c7e1a528b7cb460933fc2875e916");
 
     }
+
+    @Subscribe
+    public void onCategoriesDataLoaded(RestApiEvent.LoadedCategoriesList event) {
+        collectionList.addAll(event.getCategoriesVOList());
+        RetrofitDataAgent.getInstance().loadTopic(1, "b002c7e1a528b7cb460933fc2875e916");
+
+    }
+
+    @Subscribe
+    public void onTopicDataLoaded(RestApiEvent.LoadedTopicList event) {
+        collectionList.addAll(event.getLoadTopicsList());
+        RestApiEvent.SuccessEvent dataSuccess = new RestApiEvent.SuccessEvent(collectionList);
+        EventBus.getDefault().post(dataSuccess);
+
+    }
+
+
+
 
 }

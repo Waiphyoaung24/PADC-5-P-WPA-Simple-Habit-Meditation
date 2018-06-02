@@ -30,6 +30,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_content_tips_1"
+                android:text="@string/main_content"
+                android:textColor="@color/white_full"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:textSize="@dimen/text_regular_3x"
+                />
+
             <ImageView
                 android:id="@+id/iv_content_1"
                 android:layout_width="@dimen/big_content_width"
@@ -64,6 +74,7 @@
                 android:layout_alignRight="@id/iv_content_1"
                 android:layout_margin="@dimen/margin_medium_2"
                 android:text="@string/duration"
+                android:id="@+id/tv_length"
                 android:textColor="@color/white_full"
 
                 />

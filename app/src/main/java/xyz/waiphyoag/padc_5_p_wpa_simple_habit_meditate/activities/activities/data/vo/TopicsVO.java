@@ -2,11 +2,13 @@ package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.d
 
 import com.google.gson.annotations.SerializedName;
 
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
+
 /**
  * Created by WaiPhyoAg on 5/25/18.
  */
 
-public class TopicsVO {
+public class TopicsVO implements SharedParent{
     @SerializedName("topic-name")
     private String topicName;
 

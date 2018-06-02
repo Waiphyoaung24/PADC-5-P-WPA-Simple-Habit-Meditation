@@ -12,7 +12,7 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.da
  * Created by WaiPhyoAg on 5/18/18.
  */
 
-public class ItemTopicViewHolder extends BaseViewHolder {
+public class ItemTopicViewHolder extends BaseViewHolder<TopicsVO> {
 
     @BindView(R.id.tv_topic_name)
     TextView tvTopicName;
@@ -25,15 +25,17 @@ public class ItemTopicViewHolder extends BaseViewHolder {
 
     }
 
+
+
     @Override
-    public void setData(Object data) {
-        TopicsVO topicsDataObj= (TopicsVO) data;
-        tvTopicName.setText(topicsDataObj.getTopicName());
-        tvTopicDesc.setText(topicsDataObj.getTopicDesc());
+    public void setData(TopicsVO data) {
+        tvTopicName.setText(data.getTopicName());
+        tvTopicDesc.setText(data.getTopicDesc());
     }
 
     @Override
     public void onClick(View v) {
 
     }
+
 }

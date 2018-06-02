@@ -6,25 +6,20 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events.RestApiEvent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters.ItemAdapter;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters.ItemTopicAdapter;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.SessionsItemDelegate;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.MeFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.OnTheGoFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.SeriesFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.TeachersFragment;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemTopicViewHolder;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,13 +32,14 @@ public class MainActivity extends BaseActivity {
     private ItemAdapter itemAdapter;
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
+    @BindView(R.id.fl_main_screen)
+    FrameLayout flMainScreen;
 
     public static Intent meditateIntent(Context context)
     {
         Intent intent =new Intent(context,MainActivity.class);
         return intent;
     }
-
 
 
 
@@ -73,12 +69,13 @@ public class MainActivity extends BaseActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.item_meditate:
-//                        Intent intentForMeditate=MainActivity.meditateIntent(getApplicationContext());
-//                        startActivity(intentForMeditate);
+                            Intent intentForMeditate=MainActivity.meditateIntent(getApplicationContext());
+                           startActivity(intentForMeditate);
                         break;
                     case R.id.item_me:
-                        Intent intentForMe = MeActivity.MeIntent(getApplicationContext());
-                        startActivity(intentForMe);
+                      getSupportFragmentManager().beginTransaction()
+                              .replace(R.id.fl_main_screen, MeFragment.newInstance())
+                              .commit();
                     case R.id.item_more:
                         break;
                 }
@@ -89,5 +86,7 @@ public class MainActivity extends BaseActivity {
 
         });
     }
+
+
 }
 

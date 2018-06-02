@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.SessionsItemDelegate;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.BaseViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.FirstTipsViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemMeditationTipsViewHolder;
 
@@ -15,24 +20,22 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.vi
  * Created by WaiPhyoAg on 5/17/18.
  */
 
-public class MeditationTipsAdapter extends RecyclerView.Adapter {
+public class MeditationTipsAdapter extends BaseRecyclerAdapter<BaseViewHolder, ProgramsVO> {
+    private SessionsItemDelegate mDelegate;
+    public MeditationTipsAdapter(Context context,SessionsItemDelegate sessionsItemDelegate) {
+        super(context);
+        mDelegate=sessionsItemDelegate;
+
+
+    }
+
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context=parent.getContext();
-        LayoutInflater layoutInflater=LayoutInflater.from(context);
-        View view=layoutInflater.inflate(R.layout.item_meditation_tips,parent,false);
-        ItemMeditationTipsViewHolder itemMeditationTipsViewHolder=new ItemMeditationTipsViewHolder(view);
-        return  itemMeditationTipsViewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 8;
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View view = layoutInflater.inflate(R.layout.item_meditation_tips, parent, false);
+        ItemMeditationTipsViewHolder itemMeditationTipsViewHolder = new ItemMeditationTipsViewHolder(view,mDelegate);
+        return itemMeditationTipsViewHolder;
     }
 }

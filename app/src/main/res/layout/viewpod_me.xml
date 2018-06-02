@@ -5,27 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/background_color"
-            app:titleTextColor="@color/white_full">
-
-        </android.support.v7.widget.Toolbar>
-
-
-    </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_xxxlarge"
-        >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_progress"
@@ -168,20 +151,6 @@
         </android.support.v7.widget.CardView>
 
 
-
-
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/navigation_height"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/navigation_background"
-            app:itemIconTint="@color/secondary_text"
-            app:itemTextColor="@color/white_full"
-            app:menu="@menu/navigation_menu">
-
-        </android.support.design.widget.BottomNavigationView>
     </RelativeLayout>
 
 

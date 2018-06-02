@@ -26,5 +26,13 @@
     <string name="text_total_minutes">Total Minutes</string>
     <string name="limited">Get Unlimited Access</string>
     <string name="best_teacher">To The world\'s best teachers</string>
+    <string name="main_content">Simple Habit Starter</string>
+    <string name="session_title">Mindful Sleep</string>
+    <string name="download">Download</string>
+    <string name="session_detail">Learm mindful sleep techniques to use before bed to relax your mind and body.Finally, enjoy deep, quality rest.</string>
+    <string name="session">SESSIONS</string>
+    <string name="session_count">1</string>
+    <string name="session_list_title">Finding Inner Peace</string>
+    <string name="session_length">5:28</string>
 
 </resources>
