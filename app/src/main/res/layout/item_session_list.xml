@@ -2,24 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#212121"
-    >
+    android:background="#212121">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
+        android:layout_marginBottom="@dimen/margin_medium_2"
         android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_marginBottom="@dimen/margin_medium_2">
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <TextView
             android:id="@+id/tv_session_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="@dimen/margin_xlarge"
             android:text="@string/session_count"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/white_full"
             android:textSize="@dimen/text_regular_2x" />
 
@@ -27,10 +27,10 @@
             android:id="@+id/tv_session_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="@dimen/margin_xxxlarge"
             android:layout_weight="1"
+            android:paddingLeft="@dimen/margin_medium"
             android:text="@string/session_list_title"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/white_full"
             android:textSize="@dimen/text_regular_2x" />
 
@@ -38,7 +38,8 @@
             android:id="@+id/tv_session_length"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/session_length"
+            android:layout_weight="1"
+            android:text= "@string/session_length"
             android:textAlignment="center"
             android:textColor="@color/white_full"
             android:textSize="@dimen/text_regular_2x" />

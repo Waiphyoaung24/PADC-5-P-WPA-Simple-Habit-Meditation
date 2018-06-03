@@ -21,6 +21,8 @@ public class ItemSessionListViewHolder extends BaseViewHolder<SessionsVO> {
     TextView tvSessionListTitle;
     @BindView(R.id.tv_session_order)
     TextView tvSessionOrder;
+    @BindView(R.id.tv_session_length)
+    TextView tvSessionLength;
 
     public ItemSessionListViewHolder(View itemView) {
         super(itemView);
@@ -30,6 +32,9 @@ public class ItemSessionListViewHolder extends BaseViewHolder<SessionsVO> {
     public void setData(SessionsVO data) {
         tvSessionListTitle.setText(data.getTitle());
         tvSessionOrder.setText(data.getSessionID());
+
+         String avgLength = data.getLengthInSecond()/60+":"+data.getLengthInSecond()%60;
+         tvSessionLength.setText(avgLength);
 
     }
 

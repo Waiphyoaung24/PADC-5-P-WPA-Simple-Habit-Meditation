@@ -1,5 +1,6 @@
 package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,32 +21,29 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events.RestApiEvent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.MeditationApp;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.activities.SessionDetailActivity;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters.SeriesAdapter;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.model.UserModel;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.SessionsItemDelegate;
 
 /**
  * Created by WaiPhyoAg on 5/24/18.
  */
 
-public class SeriesFragment extends Fragment implements SessionsItemDelegate {
+public class SeriesFragment extends Fragment {
     @BindView(R.id.rv_series_list)
     RecyclerView rvSeriesList;
-    private UserModel model;
-
 
     private SeriesAdapter mSeriesAdapter;
-
+    private SessionsItemDelegate mDelegate;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_series, container, false);
         ButterKnife.bind(this, view);
-        mSeriesAdapter = new SeriesAdapter(view.getContext(), this);
+        mSeriesAdapter = new SeriesAdapter(view.getContext(), mDelegate);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         rvSeriesList.setLayoutManager(linearLayoutManager);
         rvSeriesList.setAdapter(mSeriesAdapter);
@@ -79,25 +77,10 @@ public class SeriesFragment extends Fragment implements SessionsItemDelegate {
         Snackbar.make(rvSeriesList, event.getErrorMsg(), Snackbar.LENGTH_INDEFINITE).show();
     }
 
-
     @Override
-    public void onTapSessionItem(ProgramsVO programsVO) {
-        Intent intent=SessionDetailActivity.newIntent(getContext(),programsVO.getProgramID());
-        startActivity(intent);
-
-
-
-    }
-
-    @Override
-    public void onTapStartHere(CurrentProgramsVO currentProgramsVO) {
-        Intent intent = SessionDetailActivity.newIntent(getContext(),currentProgramsVO.getProgramID());
-
-        startActivity(intent);
-    }
-
-    @Override
-    public void onTapTopicItem() {
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mDelegate = (SessionsItemDelegate) context;
 
     }
 }

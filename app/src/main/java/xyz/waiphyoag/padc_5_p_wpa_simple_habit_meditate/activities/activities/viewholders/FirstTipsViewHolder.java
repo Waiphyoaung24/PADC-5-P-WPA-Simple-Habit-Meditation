@@ -28,7 +28,7 @@ public class FirstTipsViewHolder extends BaseViewHolder<CurrentProgramsVO> {
     TextView tvLength;
 
     private SessionsItemDelegate mDelegate;
-    private CurrentProgramsVO currentProgramsVO;
+    private CurrentProgramsVO mcurrentProgramsVO;
 
     public FirstTipsViewHolder(View itemView, SessionsItemDelegate sessionsItemDelegate) {
         super(itemView);
@@ -40,7 +40,7 @@ public class FirstTipsViewHolder extends BaseViewHolder<CurrentProgramsVO> {
     @Override
     public void setData(CurrentProgramsVO data) {
 
-
+        mcurrentProgramsVO=data;
         String avgLength = "";
 
         for (int length : data.getLength()) {
@@ -55,7 +55,7 @@ public class FirstTipsViewHolder extends BaseViewHolder<CurrentProgramsVO> {
 
     @Override
     public void onClick(View v) {
-        mDelegate.onTapStartHere(currentProgramsVO);
+        mDelegate.onTapStartHere(mcurrentProgramsVO.getProgramID());
 
 
     }

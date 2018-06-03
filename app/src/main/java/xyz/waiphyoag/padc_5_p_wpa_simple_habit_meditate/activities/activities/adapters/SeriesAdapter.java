@@ -1,15 +1,11 @@
 package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.activities.SessionDetailActivity;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
@@ -17,7 +13,7 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.da
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.SessionsItemDelegate;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.BaseViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.FirstTipsViewHolder;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemMorningMeditationViewHolder;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.CategoryViewHolder;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.viewholders.ItemTopicViewHolder;
 
 /**
@@ -50,13 +46,13 @@ public class SeriesAdapter extends BaseRecyclerAdapter<BaseViewHolder, SharedPar
                         .inflate(R.layout.layout_main_content, parent, false),mDelegate);
                 break;
             case VT_MEDITATION:
-                viewHolder = new ItemMorningMeditationViewHolder(LayoutInflater.from(parent.getContext())
+                viewHolder = new CategoryViewHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_morning_meditation, parent, false),mDelegate);
                 break;
 
             case VT_CATEGORY:
                 viewHolder = new ItemTopicViewHolder(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_category_tips, parent, false));
+                        .inflate(R.layout.view_holder_program, parent, false));
                 break;
 
         }

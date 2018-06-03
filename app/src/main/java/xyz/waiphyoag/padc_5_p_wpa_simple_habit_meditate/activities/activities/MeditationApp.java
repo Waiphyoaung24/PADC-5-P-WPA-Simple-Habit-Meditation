@@ -11,7 +11,9 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.da
 
 public class MeditationApp extends Application {
 
-    public static final String Current_program="CurrentProgram";
+    public static final String PROGRAM_ID ="ProgramId";
+    public static final String CATEGORY_ID = "CategoryId";
+
     @Override
     public void onCreate() {
         super.onCreate();

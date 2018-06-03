@@ -34,6 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:id="@+id/tv_session_main_title"
                     android:text="@string/session_title"
                     android:textColor="@color/white_full"
                     android:textSize="@dimen/text_regular_3x"
@@ -127,20 +128,31 @@
                     android:id="@+id/tv_session_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_xlarge"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
                     android:layout_marginLeft="@dimen/margin_medium_2"
                     android:layout_marginRight="@dimen/margin_xxlarge"
                     android:layout_marginTop="@dimen/margin_xlarge"
+                    android:maxLines="2"
                     android:text="@string/session_detail"
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/text_regular_2x" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_session_detail"
+                    android:id="@+id/tv_read_more"
+                    android:textColor="@color/primary"
+                    android:text="@string/read_more"
+                    android:layout_centerInParent="true"/>
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_session_main_title"
-                    android:layout_below="@id/tv_session_detail"
+                    android:id="@+id/tv_session"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_below="@id/tv_read_more"
                     android:layout_marginLeft="@dimen/margin_medium_2"
                     android:text="@string/session"
                     android:textColor="@color/white_full"
@@ -152,7 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/rv_session_list"
-                    android:layout_below="@id/tv_session_main_title"
+                    android:layout_below="@id/tv_session"
                     android:layout_marginTop="@dimen/margin_medium">
 
                 </android.support.v7.widget.RecyclerView>
