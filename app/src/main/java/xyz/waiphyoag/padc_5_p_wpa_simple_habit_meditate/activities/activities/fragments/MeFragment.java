@@ -1,20 +1,15 @@
 package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.activities.MainActivity;
 
 /**
  * Created by WaiPhyoAg on 5/27/18.

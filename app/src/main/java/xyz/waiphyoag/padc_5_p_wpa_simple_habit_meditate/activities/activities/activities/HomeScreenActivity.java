@@ -14,15 +14,19 @@ import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.MeditationApp;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters.ItemAdapter;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.SessionsItemDelegate;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.MeFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.OnTheGoFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.SeriesFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.TeachersFragment;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mvp.presenters.HomeScreenPresenter;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mvp.views.HomeScreenView;
 
-public class MainActivity extends BaseActivity implements SessionsItemDelegate {
+public class HomeScreenActivity extends BaseActivity implements HomeScreenView{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -35,9 +39,10 @@ public class MainActivity extends BaseActivity implements SessionsItemDelegate {
     BottomNavigationView bottomNavigationView;
     @BindView(R.id.fl_main_screen)
     FrameLayout flMainScreen;
+    private HomeScreenPresenter mPresenter;
 
     public static Intent meditateIntent(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, HomeScreenActivity.class);
         return intent;
     }
 
@@ -47,6 +52,9 @@ public class MainActivity extends BaseActivity implements SessionsItemDelegate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this, this);
+
+        mPresenter=new HomeScreenPresenter(this);
+        mPresenter.onCreate();
 
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -68,8 +76,8 @@ public class MainActivity extends BaseActivity implements SessionsItemDelegate {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.item_meditate:
-                        Intent intentForMeditate = MainActivity.meditateIntent(getApplicationContext());
-                        startActivity(intentForMeditate);
+//                        Intent intentForMeditate = HomeScreenActivity.meditateIntent(getApplicationContext());
+//                        startActivity(intentForMeditate);
                         break;
                     case R.id.item_me:
                         getSupportFragmentManager().beginTransaction()
@@ -86,27 +94,36 @@ public class MainActivity extends BaseActivity implements SessionsItemDelegate {
         });
     }
 
-
     @Override
-    public void onTapSessionItem(String categoryId, String programId) {
-        Intent intent = SessionDetailActivity.newIntentForCategories(getApplicationContext(), categoryId, programId);
-        intent.putExtra(MeditationApp.PROGRAM_ID, programId);
-        intent.putExtra(MeditationApp.PROGRAM_ID, categoryId);
-        startActivity(intent);
-
+    protected void onStart() {
+        super.onStart();
+        mPresenter.onStart();
     }
 
     @Override
-    public void onTapStartHere(String programId) {
-        Intent intent = SessionDetailActivity.newIntentForCurrentProgram(getApplicationContext());
-        intent.putExtra(MeditationApp.PROGRAM_ID, programId);
-        startActivity(intent);
-
+    protected void onStop() {
+        super.onStop();
+        mPresenter.onStop();
     }
 
     @Override
-    public void onTapTopicItem() {
-
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPresenter.onPause();
+    }
+
+
 }
 

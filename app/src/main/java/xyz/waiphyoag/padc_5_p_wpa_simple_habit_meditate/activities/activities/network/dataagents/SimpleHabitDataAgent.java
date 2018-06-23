@@ -1,4 +1,4 @@
-package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.DataAgents;
+package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.dataagents;
 
 /**
  * Created by WaiPhyoAg on 5/25/18.

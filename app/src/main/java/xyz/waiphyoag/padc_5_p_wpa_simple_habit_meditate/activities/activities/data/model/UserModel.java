@@ -2,19 +2,17 @@ package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.d
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events.RestApiEvent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.events.RestApiEvent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.TopicsVO;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.DataAgents.RetrofitDataAgent;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.DataAgents.SimpleHabitDataAgent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.dataagents.RetrofitDataAgent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.dataagents.SimpleHabitDataAgent;
 
 /**
  * Created by WaiPhyoAg on 5/25/18.
@@ -46,6 +44,31 @@ public class UserModel {
         return objInstance;
     }
 
+    public CurrentProgramsVO getCurrentProgram() {
+
+        for (SharedParent obj : collectionList) {
+            if (obj instanceof CurrentProgramsVO)
+                return (CurrentProgramsVO) obj;
+        }
+        return null;
+    }
+
+    public ProgramsVO getProgramByProgramID(String categoryId, String programId ) {
+
+        for (int i = 0; i < collectionList.size(); i++) {
+            if (collectionList.get(i) instanceof CategoriesVO) {
+                if (((CategoriesVO) collectionList.get(i)).getCategoryID().equals(categoryId)) {
+                    for (int j = 0; j < ((CategoriesVO) collectionList.get(i)).getPrograms().size(); j++) {
+                        if (((CategoriesVO) collectionList.get(i)).getPrograms().get(j).getProgramID().equals(programId)) {
+                            return ((CategoriesVO) collectionList.get(i)).getPrograms().get(j);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public void StartloadingSimpleHabit() {
         RetrofitDataAgent.getInstance().loadCurrentProgram(pageNo, accessToken);
 
@@ -73,33 +96,6 @@ public class UserModel {
 
     }
 
-    public CurrentProgramsVO getCurrentProgramByProgramID(String programId) {
-
-        for (SharedParent obj : collectionList) {
-            if (obj instanceof CurrentProgramsVO)
-                return (CurrentProgramsVO) obj;
-        }
-        return null;
-    }
-
-    public ProgramsVO getProgramByProgramID(String programId, String categoryId) {
-        ProgramsVO programsVO = null;
-
-        for (int i = 0; i < collectionList.size(); i++) {
-            if ((collectionList.get(i) instanceof CategoriesVO)) {
-                if (((CategoriesVO) collectionList.get(i)).getCategoryID().equals(categoryId)) {
-                    for (int j = 0; j < ((CategoriesVO) collectionList.get(i)).getPrograms().size(); j++) {
-                        if (((CategoriesVO) collectionList.get(i)).getPrograms().get(j).getProgramID().equals(programId)) {
-                            return ((CategoriesVO) collectionList.get(i)).getPrograms().get(j);
-                        }
-
-                    }
-
-                }
-            }
-        }
-        return null;
-    }
 
 }
 

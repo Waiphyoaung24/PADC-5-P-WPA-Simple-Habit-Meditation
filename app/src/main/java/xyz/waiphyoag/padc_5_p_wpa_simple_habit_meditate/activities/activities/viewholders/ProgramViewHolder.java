@@ -45,7 +45,7 @@ public class ProgramViewHolder extends BaseViewHolder<ProgramsVO> {
     @Override
     public void onClick(View v) {
 
-        mDelegate.onTapSessionItem(programsVO.getProgramID(), mRootCategory.getCategoryID());
+        mDelegate.onTapSessionItem(programsVO,mRootCategory);
     }
 
     public void setRootCategory(CategoriesVO category) {

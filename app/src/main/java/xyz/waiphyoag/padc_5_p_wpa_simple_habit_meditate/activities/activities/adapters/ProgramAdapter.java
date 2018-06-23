@@ -42,6 +42,7 @@ public class ProgramAdapter extends BaseRecyclerAdapter<ProgramViewHolder, Progr
     @Override
     public void onBindViewHolder(ProgramViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
+        holder.setData(mData.get(position));
         holder.setRootCategory(mRootCategory);
 
     }

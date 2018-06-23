@@ -19,13 +19,15 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.ad
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.model.UserModel;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.SessionsVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mvp.presenters.SessionDetailPresenter;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mvp.views.SessionDetailView;
+
 
 /**
  * Created by WaiPhyoAg on 5/31/18.
  */
 
-public class SessionDetailActivity extends BaseActivity {
+public class SessionDetailActivity extends BaseActivity implements SessionDetailView {
     @BindView(R.id.rv_session_list)
     RecyclerView rvSessionList;
 
@@ -41,23 +43,20 @@ public class SessionDetailActivity extends BaseActivity {
     private CurrentProgramsVO currentProgramsVO;
     private ProgramsVO programsVO;
     private String programName;
-    private List<SessionsVO> sessionList;
-
-    private static final String IE_PROGRAM_NAME = "IE_PROGRAM_NAME";
-    private static final String IE_PROGRAM_ID = "IE_PROGRAM_ID";
-    private static final String IE_CATEGORY_ID = "IE_CATEGORY_ID";
+    private SessionDetailPresenter mPresenter;
 
 
     public static Intent newIntentForCurrentProgram(Context context) {
         Intent intent = new Intent(context, SessionDetailActivity.class);
-        intent.putExtra(IE_PROGRAM_NAME, "programID");
+        intent.putExtra(MeditationApp.IE_PROGRAM_NAME, MeditationApp.Current_Program);
         return intent;
     }
 
     public static Intent newIntentForCategories(Context context, String categoryId, String programId) {
         Intent intent = new Intent(context, SessionDetailActivity.class);
-        intent.putExtra(IE_PROGRAM_ID, programId);
-        intent.putExtra(IE_CATEGORY_ID, categoryId);
+        intent.putExtra(MeditationApp.IE_PROGRAM_NAME, MeditationApp.Category);
+        intent.putExtra(MeditationApp.IE_CATEGORY_ID, categoryId);
+        intent.putExtra(MeditationApp.IE_PROGRAM_ID, programId);
         return intent;
     }
 
@@ -66,47 +65,74 @@ public class SessionDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_detail);
         ButterKnife.bind(this, this);
-
+        mPresenter = new SessionDetailPresenter(this);
+        mPresenter.onCreate();
 
         mSessionAdapter = new SessionListAdapter(this);
 
-
-//        int programID= getIntent().getIntExtra(MeditationApp.PROGRAM_ID,0);
-//        CurrentProgramsVO currentProgramsVO= (CurrentProgramsVO) UserModel.getInstance().getCollectionList().get(programID);
-//        mSessionAdapter.appendNewData(currentProgramsVO.getSessionsVO());
-//        tvSessionDetail.setText(currentProgramsVO.getDescription());
-
-
-        String programID = getIntent().getStringExtra(MeditationApp.PROGRAM_ID);
-        String categoryID = getIntent().getStringExtra(MeditationApp.CATEGORY_ID);
-
-        int CurrentProgramID = getIntent().getIntExtra(MeditationApp.PROGRAM_ID, 0);
-
-        if (UserModel.getInstance().getCurrentProgramByProgramID(programID) != null) {
-            CurrentProgramsVO currentProgramsVO = (CurrentProgramsVO) UserModel.getInstance().getCollectionList().get(CurrentProgramID);
-            mSessionAdapter.appendNewData(currentProgramsVO.getSessionsVO());
-            tvSessionDetail.setText(currentProgramsVO.getDescription());
-
-            if (tvSessionDetail.getLineCount() < tvSessionDetail.getMaxLines()) {
-                tvReadMore.setVisibility(View.GONE);
-
-            }
-
-        } else if (UserModel.getInstance().getProgramByProgramID(programID, categoryID) != null) {
-            programsVO = UserModel.getInstance().getProgramByProgramID(programID, categoryID);
-            mSessionAdapter.setNewData(programsVO.getSessionsVO());
-            tvSessionDetail.setText(programsVO.getDescription());
-            tvSessionTitle.setText(programsVO.getTitle());
-            mSessionAdapter.setNewData(programsVO.getSessionsVO());
-
-
-        }
 
         LinearLayoutManager linearLayoutManagerforSession = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvSessionList.setAdapter(mSessionAdapter);
         rvSessionList.setLayoutManager(linearLayoutManagerforSession);
 
+
+        if (getIntent().getStringExtra(MeditationApp.IE_PROGRAM_NAME).equals(MeditationApp.Current_Program)) {
+            String programId = getIntent().getStringExtra(MeditationApp.IE_PROGRAM_ID);
+
+            mPresenter.onFinishLoadingCurrentProgramDetail(programId, currentProgramsVO);
+
+
+        } else if (getIntent().getStringExtra(MeditationApp.IE_PROGRAM_NAME).equals(MeditationApp.Category)) {
+            String categoryId = getIntent().getStringExtra(MeditationApp.IE_CATEGORY_ID);
+            String programId = getIntent().getStringExtra(MeditationApp.IE_PROGRAM_ID);
+
+            mPresenter.onFinishLoadingProgram(categoryId, programId, programsVO);
+
+
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPresenter.onPause();
     }
 
 
+    @Override
+    public void onFinishLauchingCurrentProgram(String programId, CurrentProgramsVO currentProgramsVO) {
+        mSessionAdapter.setNewData(currentProgramsVO.getSessionsVO());
+        tvSessionDetail.setText(currentProgramsVO.getDescription());
+    }
+
+    @Override
+    public void onFinishLauchingPrograms(String categoryId, String programId, ProgramsVO programsVO) {
+        mSessionAdapter.setNewData(programsVO.getSessionsVO());
+        tvSessionDetail.setText(programsVO.getDescription());
+        tvSessionTitle.setText(programsVO.getTitle());
+    }
 }

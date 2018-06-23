@@ -1,4 +1,4 @@
-package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.DataAgents;
+package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.dataagents;
 
 import com.google.gson.Gson;
 
@@ -12,8 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.POST;
-import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events.RestApiEvent;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.events.RestApiEvent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.SimpleHabitApi;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.responses.GetCategoryResponse;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.network.responses.GetCurrentProgramResponse;

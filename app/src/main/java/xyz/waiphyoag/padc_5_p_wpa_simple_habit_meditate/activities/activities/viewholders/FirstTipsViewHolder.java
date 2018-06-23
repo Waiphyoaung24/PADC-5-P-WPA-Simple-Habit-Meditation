@@ -55,7 +55,7 @@ public class FirstTipsViewHolder extends BaseViewHolder<CurrentProgramsVO> {
 
     @Override
     public void onClick(View v) {
-        mDelegate.onTapStartHere(mcurrentProgramsVO.getProgramID());
+        mDelegate.onTapStartHere(mcurrentProgramsVO);
 
 
     }

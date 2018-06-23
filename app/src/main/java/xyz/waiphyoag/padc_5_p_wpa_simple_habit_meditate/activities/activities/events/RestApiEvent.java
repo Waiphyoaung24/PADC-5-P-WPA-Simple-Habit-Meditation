@@ -1,4 +1,4 @@
-package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.Events;
+package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.events;
 
 import java.util.List;
 
