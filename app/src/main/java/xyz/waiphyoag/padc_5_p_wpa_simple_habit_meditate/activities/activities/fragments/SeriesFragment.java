@@ -36,7 +36,6 @@ public class SeriesFragment extends Fragment implements SeriesSessionView {
     RecyclerView rvSeriesList;
 
     private SeriesAdapter mSeriesAdapter;
-    private SessionsItemDelegate mDelegate;
 
     private SeriesSessionPresenter mPresenter;
 
@@ -47,8 +46,8 @@ public class SeriesFragment extends Fragment implements SeriesSessionView {
         ButterKnife.bind(this, view);
         mPresenter = new SeriesSessionPresenter(this);
         mPresenter.onCreate();
-        mDelegate = mPresenter;
-        mSeriesAdapter = new SeriesAdapter(view.getContext(), mDelegate);
+
+        mSeriesAdapter = new SeriesAdapter(view.getContext(), mPresenter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         rvSeriesList.setLayoutManager(linearLayoutManager);
         rvSeriesList.setAdapter(mSeriesAdapter);

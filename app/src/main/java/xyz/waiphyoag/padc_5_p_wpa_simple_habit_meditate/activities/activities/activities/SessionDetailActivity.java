@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,13 +30,13 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mv
 public class SessionDetailActivity extends BaseActivity implements SessionDetailView {
     @BindView(R.id.rv_session_list)
     RecyclerView rvSessionList;
-
     @BindView(R.id.tv_session_main_title)
     TextView tvSessionTitle;
     @BindView(R.id.tv_session_detail)
     TextView tvSessionDetail;
     @BindView(R.id.tv_read_more)
     TextView tvReadMore;
+
 
 
     private SessionListAdapter mSessionAdapter;

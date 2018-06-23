@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/session_background">
+    android:background="@color/session_background"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -31,10 +31,10 @@
                     android:src="@drawable/ic_dummy_logo_2" />
 
                 <TextView
+                    android:id="@+id/tv_session_main_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:id="@+id/tv_session_main_title"
                     android:text="@string/session_title"
                     android:textColor="@color/white_full"
                     android:textSize="@dimen/text_regular_3x"
@@ -138,22 +138,22 @@
                     android:textSize="@dimen/text_regular_2x" />
 
                 <TextView
+                    android:id="@+id/tv_read_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_session_detail"
-                    android:id="@+id/tv_read_more"
-                    android:textColor="@color/primary"
+                    android:layout_centerInParent="true"
                     android:text="@string/read_more"
-                    android:layout_centerInParent="true"/>
+                    android:textColor="@color/primary" />
 
 
                 <TextView
+                    android:id="@+id/tv_session"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_session"
-                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:layout_below="@id/tv_read_more"
                     android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:text="@string/session"
                     android:textColor="@color/white_full"
 
@@ -161,9 +161,9 @@
                     />
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_session_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rv_session_list"
                     android:layout_below="@id/tv_session"
                     android:layout_marginTop="@dimen/margin_medium">
 
@@ -176,10 +176,10 @@
 
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/margin_medium_2"
-        android:backgroundTint="#80deea"
         android:src="@drawable/ic_play_arrow"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="right|bottom" />
