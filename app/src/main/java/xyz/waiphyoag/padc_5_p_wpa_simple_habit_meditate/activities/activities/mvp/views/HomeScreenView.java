@@ -2,6 +2,7 @@ package xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.m
 
 import java.util.List;
 
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
 
@@ -11,7 +12,13 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.da
 
 public interface HomeScreenView extends BaseView {
 
+    void displaySessionList(List<SharedParent> mData);
 
+    void displayErrorList(String errorMsg);
+
+    void lauchSessionList(String programId, String categoryId);
+
+    void lauchCurrentProgram(String programId);
 
 
 }

@@ -9,7 +9,7 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.da
  */
 
 public interface SessionsItemDelegate {
-    void onTapSessionItem(ProgramsVO programsVO, CategoriesVO categoriesVO);
+    void onTapSessionItem(String programId, String cateogryId);
     void onTapStartHere(CurrentProgramsVO currentProgramsVO);
     void onTapTopicItem();
 }

@@ -11,13 +11,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.R;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.adapters.ItemAdapter;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.components.SharedParent;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CategoriesVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.CurrentProgramsVO;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.data.vo.ProgramsVO;
+import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.HomePresenterDelegate;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.delegates.SessionsItemDelegate;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.MeFragment;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fragments.OnTheGoFragment;
@@ -26,7 +30,7 @@ import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.fr
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mvp.presenters.HomeScreenPresenter;
 import xyz.waiphyoag.padc_5_p_wpa_simple_habit_meditate.activities.activities.mvp.views.HomeScreenView;
 
-public class HomeScreenActivity extends BaseActivity implements HomeScreenView{
+public class HomeScreenActivity extends BaseActivity implements HomeScreenView,HomePresenterDelegate{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -125,5 +129,38 @@ public class HomeScreenActivity extends BaseActivity implements HomeScreenView{
     }
 
 
+    @Override
+    public HomeScreenPresenter getPresenter() {
+        return mPresenter;
+    }
+
+    @Override
+    public void displaySessionList(List<SharedParent> mData) {
+        SeriesFragment seriesFragment = (SeriesFragment) itemAdapter.getItem(1);
+        seriesFragment.displaySessionList(mData);
+    }
+
+    @Override
+    public void displayErrorList(String errorMsg) {
+        SeriesFragment seriesFragment= (SeriesFragment) itemAdapter.getItem(1);
+        seriesFragment.displayErrorList(errorMsg);
+
+    }
+
+    @Override
+    public void lauchSessionList(String programId, String categoryId) {
+        SeriesFragment seriesFragment= (SeriesFragment) itemAdapter.getItem(1);
+        seriesFragment.lauchSessionList(programId,categoryId);
+
+
+    }
+
+    @Override
+    public void lauchCurrentProgram(String programId) {
+        SeriesFragment seriesFragment= (SeriesFragment) itemAdapter.getItem(1);
+        seriesFragment.lauchCurrentProgram(programId);
+
+
+    }
 }
 
